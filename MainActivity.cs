@@ -17,7 +17,9 @@ namespace TestApp
         private string password;
         private Button loginButton;
         private RestRequester restRequester;
-        private string client;
+        private string client =string.Empty;
+        private static Context mContext;
+        private Action<AuthenticationResponse> successCallback = (authenticationResponse) => OnSucessAuthentication(authenticationResponse);
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -25,9 +27,6 @@ namespace TestApp
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             SetContentView(Resource.Layout.login_activity);
 
-            Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-
-            SetSupportActionBar(toolbar);
         
             TextInputLayout loginInput = FindViewById<TextInputLayout>(Resource.Id.input_login);
             TextInputLayout passwordInput = FindViewById<TextInputLayout>(Resource.Id.input_password);
@@ -41,55 +40,49 @@ namespace TestApp
 
             loginText.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
             {
+                this.login = loginText.Text;
                 if (loginText.Text != string.Empty && passwordText.Text != string.Empty)
                     this.loginButton.Enabled = true;
             };
             passwordText.TextChanged += (object sender, Android.Text.TextChangedEventArgs e) =>
             {
+                this.password = passwordText.Text;
                 if (loginText.Text != string.Empty && passwordText.Text != string.Empty)
                     this.loginButton.Enabled = true;
             };
             this.restRequester = new RestRequester();
+            AppContexWrapper.SetAContext(this);
+            mContext = this;
+
 
         }
+        private static void OnSucessAuthentication(AuthenticationResponse authenticationResponse)
+        {
+            User user = authenticationResponse.user;
+            Token token = authenticationResponse.token;
+
+       
+      
+            Intent intent = new Intent(mContext, typeof(ContactListActivity));
+            intent.PutExtra("authToken", token.AuthToken); 
+            mContext.StartActivity(intent);
+
+
+        }
+
+
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if(this.login!=null && this.password!=null && this.client != null)
+            if(this.login!=null && this.password!=null )
             {
-                this.restRequester.SendRestRequest(login, password, client);
-            }
-          
-
-
-            Intent intent = new Intent(this, typeof(ContactListActivity));
-            StartActivity(intent);
-        }
-
-        public override bool OnCreateOptionsMenu(IMenu menu)
-        {
-            MenuInflater.Inflate(Resource.Menu.menu_main, menu);
-            return true;
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            int id = item.ItemId;
-            // if (id == Resource.Id.actions+)
-            {
-                return true;
+           
+                this.restRequester.SendAuthenticateRequest(login, password, client, successCallback);
             }
 
-           // return base.OnOptionsItemSelected(item);
         }
 
-
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-        {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
+     
     }
 }
 

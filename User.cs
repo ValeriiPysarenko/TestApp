@@ -27,7 +27,8 @@ namespace TestApp
 
         public enum Permissions
         {
-            USER
+            USER,
+            USER_ADMIN
         }
         public string Id { get; set; }
         public string Username { get; set; }

@@ -21,12 +21,14 @@ namespace TestApp
         private ContactListAdapter contactListAdapter;
         private RecyclerView recyclerView;
         private LinearLayoutManager linearLayoutManager;
+        private Button logoutButton;
+        private RestRequester restRequester;
+        private string authToken;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.contact_list);
-            Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
 
            
             contactList = new ContactList();
@@ -42,8 +44,17 @@ namespace TestApp
             recyclerView.SetLayoutManager(linearLayoutManager);
 
             recyclerView.SetAdapter(contactListAdapter);
+            this.logoutButton = FindViewById<Button>(Resource.Id.logout_button);
+            this.logoutButton.Click += logOutButton_Click;
+            this.restRequester = new RestRequester();
+            this.authToken = Intent.Extras.GetString("authToken");
         }
 
-       
+        private void logOutButton_Click(object sender, EventArgs e)
+        {
+            this.restRequester.SendLogOutRequest(this.authToken);
+        }
+
+
     }
 }
