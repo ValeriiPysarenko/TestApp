@@ -1,4 +1,3 @@
-@string/appbar_scrolling_view_behavior;obj\Debug\90\res\layout\content_main.xml
 adaptive-icon;obj\Debug\90\res\mipmap-anydpi-v26\ic_launcher.xml
 adaptive-icon;obj\Debug\90\res\mipmap-anydpi-v26\ic_launcher_round.xml
 android.support.design.widget.CoordinatorLayout;obj\Debug\90\res\layout\contact_list.xml
@@ -31,7 +30,6 @@ LinearLayout;obj\Debug\90\res\layout\login_activity.xml
 menu;obj\Debug\90\res\menu\menu_main.xml
 paths;C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\lp\35\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 RelativeLayout;obj\Debug\90\res\layout\contactlistview.xml
-RelativeLayout;obj\Debug\90\res\layout\content_main.xml
 resources;obj\Debug\90\res\values\colors.xml
 resources;obj\Debug\90\res\values\dimens.xml
 resources;obj\Debug\90\res\values\ic_launcher_background.xml
@@ -43,5 +41,4 @@ string;obj\Debug\90\res\values\strings.xml
 stroke;obj\Debug\90\res\drawable\button.xml
 style;obj\Debug\90\res\values\styles.xml
 TextView;obj\Debug\90\res\layout\contactlistview.xml
-TextView;obj\Debug\90\res\layout\content_main.xml
 TextView;obj\Debug\90\res\layout\login_activity.xml

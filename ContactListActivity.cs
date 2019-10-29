@@ -11,10 +11,11 @@ using Android.Support.V7.App;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 
 namespace TestApp
 {
-    [Activity(Label = "ContactListActivity")]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar")]
     public class ContactListActivity : AppCompatActivity
     {
         private ContactList contactList;
@@ -23,38 +24,46 @@ namespace TestApp
         private LinearLayoutManager linearLayoutManager;
         private Button logoutButton;
         private RestRequester restRequester;
-        private string authToken;
+        private static string authToken;
+        public static List<ContactItem> someList = new List<ContactItem>();
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.contact_list);
+            someList = JsonConvert.DeserializeObject<List<ContactItem>>(Intent.GetStringExtra("array"));
 
-           
-            contactList = new ContactList();
 
+            contactList = new ContactList
+            {
+                listOContacts = someList
+            };
 
             contactListAdapter = new ContactListAdapter(contactList);
-
-
-            SetContentView(Resource.Layout.contact_list);
-
+     
             recyclerView = FindViewById<RecyclerView>(Resource.Id.contactsListView);
             linearLayoutManager = new LinearLayoutManager(this);
             recyclerView.SetLayoutManager(linearLayoutManager);
 
             recyclerView.SetAdapter(contactListAdapter);
             this.logoutButton = FindViewById<Button>(Resource.Id.logout_button);
-            this.logoutButton.Click += logOutButton_Click;
+            this.logoutButton.Click += LogOutButton_Click;
             this.restRequester = new RestRequester();
-            this.authToken = Intent.Extras.GetString("authToken");
+            authToken = Intent.Extras.GetString("authToken");
+
         }
 
-        private void logOutButton_Click(object sender, EventArgs e)
+      
+
+        private void LogOutButton_Click(object sender, EventArgs e)
         {
-            this.restRequester.SendLogOutRequest(this.authToken);
+            this.restRequester.SendLogOutRequest(authToken);
+            Intent intent = new Intent(this, typeof(MainActivity));
+            this.StartActivity(intent);
+        
+            Finish();
+
         }
-
-
     }
 }

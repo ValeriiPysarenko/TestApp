@@ -26,14 +26,12 @@ C:\Users\fabia\source\repos\TestApp\TestApp\bin\Debug\TestApp.dll
 C:\Users\fabia\source\repos\TestApp\TestApp\bin\Debug\TestApp.pdb
 C:\Users\fabia\source\repos\TestApp\TestApp\bin\Debug\com.companyname.testapp.apk
 C:\Users\fabia\source\repos\TestApp\TestApp\bin\Debug\com.companyname.testapp-Signed.apk
-C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\TestApp.csprojAssemblyReference.cache
 C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\flata\compiled.flata
 C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\R.txt
 C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\R.cs.flag
 C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\TestApp.dll
 C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\TestApp.pdb
 C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\android\bin\com.companyname.testapp.apk
-C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\res\layout\content_main.xml
 C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\res\values\colors.xml
 C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\res\values\dimens.xml
 C:\Users\fabia\source\repos\TestApp\TestApp\obj\Debug\90\res\values\ic_launcher_background.xml

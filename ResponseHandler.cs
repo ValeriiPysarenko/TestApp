@@ -24,10 +24,10 @@ namespace TestApp
                 bool responseCodeOk = CheckResponseCode(response);
                 if (responseCodeOk && response != null)
                 {
-                    
+
                     AuthenticationResponse authenticationResponse = JsonConvert.DeserializeObject<AuthenticationResponse>(response.Content);
                     successCallback?.Invoke(authenticationResponse);
-                   
+
                 }
 
             }).Start();
@@ -41,8 +41,24 @@ namespace TestApp
                 if (responseCodeOk && response != null)
                 {
 
-                    AuthenticationResponse authenticationResponse = JsonConvert.DeserializeObject<AuthenticationResponse>(response.Content);
-                    successCallback?.Invoke(authenticationResponse);
+                    GetContactListResponse getContactListResponse = JsonConvert.DeserializeObject<GetContactListResponse>(response.Content);
+                    successCallback?.Invoke(getContactListResponse);
+
+                }
+
+            }).Start();
+        }
+
+        public static void Handle(IRestResponse response, Action<List<GetActiveListRequestResponse>> successCallback)
+        {
+            new Thread(() =>
+            {
+                bool responseCodeOk = CheckResponseCode(response);
+                if (responseCodeOk && response != null)
+                {
+
+                    List<GetActiveListRequestResponse> getActiveListRequestResponse = JsonConvert.DeserializeObject<List<GetActiveListRequestResponse>>(response.Content);
+                    successCallback?.Invoke(getActiveListRequestResponse);
 
                 }
 
@@ -76,8 +92,6 @@ namespace TestApp
 
             return false;
         }
-
-     
 
 
 

@@ -32,12 +32,26 @@ namespace TestApp
             });
         }
 
-        public void SendGetContactsRequest(string listId, Action<GetContactListResponse> successCallback)
+
+        public void GetActiveListRequest(string authToken, Action<List<GetActiveListRequestResponse>> successCallback)
         {
-            RestRequest restRequest = new RestRequest("/lists/"+listId+"/contacts", Method.GET);
-          
-            var content = new string(JsonConvert.SerializeObject(new { listId = listId }));
-            restRequest.AddJsonBody(content);
+            RestRequest restRequest = new RestRequest("/lists", Method.GET);
+
+            restRequest.AddHeader("authToken", authToken);
+
+
+            restClient.ExecuteAsync(restRequest, response =>
+            {
+                ResponseHandler.Handle(response, successCallback);
+            });
+        }
+
+        public void SendGetContactsRequest(string listId, string authToken, Action<GetContactListResponse> successCallback)
+        {
+            RestRequest restRequest = new RestRequest("/lists/" + listId + "/contacts", Method.GET);
+
+
+            restRequest.AddHeader("authToken", authToken);
 
             restClient.ExecuteAsync(restRequest, response =>
             {

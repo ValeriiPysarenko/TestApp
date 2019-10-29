@@ -12,7 +12,13 @@ using Android.Widget;
 
 namespace TestApp
 {
-     public class GetContactListResponse
+    public class GetContactListResponse
     {
+        public IList<ListContact> data { get; set; }
+        public int limit { get; set; }
+        public int offset { get; set; }
+        public int count { get; set; }
+
+
     }
 }

@@ -14,36 +14,15 @@ namespace TestApp
 {
     public class ContactList
     {
-       public static  Contact[] listOContacts = {
-                   new Contact { ContactImage = Resource.Drawable.first,
-                         Name = "Buckingham Palace",
-                   PhoneNumber ="dadsasdsadasd",
-                   EmailAdress ="dad3dsd"},
-                     new Contact { ContactImage = Resource.Drawable.second,
-                         Name = "Buckingham Palace",
-                   PhoneNumber ="dadsasdsadasd",
-                   EmailAdress ="dad3dsd"},
-                       new Contact { ContactImage = Resource.Drawable.third,
-                         Name = "Buckingham Palace",
-                   PhoneNumber ="dadsasdsadasd",
-                   EmailAdress ="dad3dsd"},
-                        new Contact { ContactImage = Resource.Drawable.fourth,
-                         Name = "Buckingham Palace",
-                   PhoneNumber ="dadsasdsadasd",
-                   EmailAdress ="dad3dsd"},
-                         new Contact { ContactImage = Resource.Drawable.fiveth,
-                         Name = "Buckingham Palace",
-                   PhoneNumber ="dadsasdsadasd",
-                   EmailAdress ="dad3dsd"},
-        };
+        public List<ContactItem> listOContacts;
 
         public int NumberContacts
         {
-            get { return listOContacts.Length; }
+            get { return listOContacts.Count; }
         }
     }
 
-    public class Contact
+    public class ContactItem
     {
         public int ContactImage
         {
